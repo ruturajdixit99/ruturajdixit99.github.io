@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruturaj Dixit — Applied AI Engineer</title>
+<meta name="description" content="Applied AI Engineer in New York. 4+ years shipping production AI: agentic pipelines, RAG, LLM fine-tuning, ML classifiers and computer vision.">
+<meta property="og:title" content="Ruturaj Dixit — Applied AI Engineer">
+<meta property="og:description" content="Agentic pipelines, RAG, LLM fine-tuning and production ML. M.S. Data Science, Pace University. Published at BICA 2026.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ruturajdixit99.github.io/">
+<meta property="og:image" content="https://ruturajdixit99.github.io/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2314130f'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23ff4f1f'>R</text></svg>">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<style>
+:root {
+  --bg: #f4f1ea;
+  --bg-2: #ebe6db;
+  --card: #fbf9f4;
+  --ink: #14130f;
+  --ink-2: #3b3932;
+  --muted: #77726a;
+  --line: #d9d2c3;
+  --accent: #e8461a;
+  --accent-soft: #ffe2d6;
+  --blue: #2440e0;
+  --shadow: 0 1px 0 rgba(20,19,15,.04), 0 12px 32px -18px rgba(20,19,15,.25);
+  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0e0c; --bg-2: #171612; --card: #1a1915; --ink: #eeeae0; --ink-2: #c9c4b8;
+    --muted: #8d877b; --line: #2e2c26; --accent: #ff6a3d; --accent-soft: #3a1d12; --blue: #7d91ff;
+    --shadow: 0 1px 0 rgba(0,0,0,.3), 0 16px 40px -20px rgba(0,0,0,.7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f0e0c; --bg-2: #171612; --card: #1a1915; --ink: #eeeae0; --ink-2: #c9c4b8;
+  --muted: #8d877b; --line: #2e2c26; --accent: #ff6a3d; --accent-soft: #3a1d12; --blue: #7d91ff;
+  --shadow: 0 1px 0 rgba(0,0,0,.3), 0 16px 40px -20px rgba(0,0,0,.7);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  overflow-x: clip;
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--sans); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  transition: background .3s, color .3s;
+}
+body::before { /* paper grain */
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .35;
+  background-image: radial-gradient(var(--line) .6px, transparent .6px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, #000 0, transparent 70vh);
+}
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+::selection { background: var(--accent); color: #fff; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid transparent; transition: border-color .3s;
+}
+.nav.scrolled { border-bottom-color: var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+.brand { font-family: var(--serif); font-size: 26px; text-decoration: none; letter-spacing: -.01em; white-space: nowrap; }
+.brand i { color: var(--accent); }
+.nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav ul a {
+  text-decoration: none; font-size: 14px; color: var(--ink-2); padding: 6px 12px; border-radius: 99px;
+  transition: background .2s, color .2s;
+}
+.nav ul a:hover, .nav ul a.active { background: var(--bg-2); color: var(--ink); }
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.icon-btn {
+  width: 36px; height: 36px; display: grid; place-items: center; border-radius: 99px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer;
+  transition: transform .2s, border-color .2s;
+}
+.icon-btn:hover { border-color: var(--ink); transform: rotate(-12deg); }
+.icon-btn svg { width: 16px; height: 16px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; text-decoration: none; cursor: pointer;
+  font: 500 14px/1 var(--sans); padding: 11px 18px; border-radius: 99px; border: 1px solid var(--ink);
+  transition: transform .2s, background .2s, color .2s, box-shadow .2s; white-space: nowrap;
+}
+.btn.solid { background: var(--ink); color: var(--bg); }
+.btn.solid:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px -10px var(--accent); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--bg); transform: translateY(-2px); }
+.btn.sm { padding: 8px 14px; font-size: 13px; }
+.btn svg { width: 15px; height: 15px; }
+.menu-btn { display: none; }
+
+/* ---------- Hero ---------- */
+.hero { padding: 72px 0 40px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 56px; align-items: end; }
+.status {
+  display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 10px;
+  border: 1px solid var(--line); border-radius: 99px; background: var(--card); font-size: 13px; color: var(--ink-2);
+}
+.pulse { width: 8px; height: 8px; border-radius: 50%; background: #1fae5b; position: relative; }
+.pulse::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #1fae5b; animation: ping 2s infinite; }
+@keyframes ping { 0% { transform: scale(.6); opacity: 1 } 100% { transform: scale(1.8); opacity: 0 } }
+h1 {
+  font-family: var(--serif); font-weight: 400; letter-spacing: -.025em;
+  font-size: clamp(54px, 9.2vw, 132px); line-height: .9; margin: 28px 0 0;
+}
+h1 .it { font-style: italic; color: var(--accent); }
+.hero-role { font-family: var(--serif); font-size: clamp(26px, 3.2vw, 40px); line-height: 1.15; margin: 22px 0 0; color: var(--ink-2); max-width: 22ch; }
+.hero-role em { color: var(--ink); }
+.hero-lede { font-size: 17px; color: var(--ink-2); max-width: 56ch; margin: 22px 0 0; }
+.hero-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
+
+.portrait-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 14px;
+  box-shadow: var(--shadow); transform: rotate(1.4deg); transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.portrait-card:hover { transform: rotate(0); }
+.portrait { aspect-ratio: 1; border-radius: 14px; overflow: hidden; background: var(--bg-2); }
+.portrait img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92) contrast(1.02); }
+.portrait-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; padding: 16px 6px 6px; }
+.portrait-meta div span { display: block; color: var(--muted); }
+.portrait-meta div b { font-weight: 500; font-size: 14px; }
+
+/* pipeline strip */
+.pipeline {
+  margin-top: 56px; border: 1px solid var(--line); border-radius: 18px; background: var(--card);
+  padding: 18px 22px; display: flex; align-items: center; gap: 18px; overflow: hidden; position: relative;
+}
+.pipeline .label { color: var(--muted); flex-shrink: 0; }
+.pipe { display: flex; flex-wrap: wrap; align-items: center; row-gap: 10px; flex: 1; min-width: 0; position: relative; }
+.node {
+  font-family: var(--mono); font-size: 12.5px; padding: 7px 12px; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--bg); white-space: nowrap; position: relative; z-index: 1;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.node.lit { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.node.lit.last { background: var(--accent); border-color: var(--accent); color: #fff; }
+.edge { flex: 1; height: 1px; min-width: 14px; background: repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 8px); opacity: .6; }
+
+/* ---------- Sections ---------- */
+section { padding: 96px 0 0; }
+.sec-head { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: baseline; margin-bottom: 44px; border-top: 1px solid var(--ink); padding-top: 18px; }
+.sec-head .mono { color: var(--muted); }
+.sec-head .mono b { color: var(--accent); font-weight: 500; }
+h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5.5vw, 68px); line-height: 1; letter-spacing: -.02em; margin: 0; }
+h2 i { color: var(--accent); }
+h3 { margin: 0; font-weight: 600; letter-spacing: -.01em; }
+
+/* bento metrics */
+.bento { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-content: start; }
+.tile {
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px;
+  display: flex; flex-direction: column; justify-content: space-between; min-height: 168px;
+  transition: transform .3s, border-color .3s;
+}
+.tile:hover { transform: translateY(-3px); border-color: var(--ink); }
+.tile .big { font-family: var(--serif); font-size: 58px; line-height: 1; letter-spacing: -.02em; }
+.tile .big small { font-size: .5em; color: var(--muted); }
+.tile p { margin: 10px 0 0; font-size: 14px; color: var(--ink-2); }
+.tile.dark { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tile.dark p, .tile.dark .mono { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+.tile.accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tile.accent p, .tile.accent .mono { color: rgba(255,255,255,.85); }
+.tile.wide { grid-column: span 2; }
+.about-text { font-family: var(--serif); font-size: clamp(24px, 2.6vw, 32px); line-height: 1.3; color: var(--ink-2); margin: 0 0 40px; max-width: 34ch; }
+.about-text em { color: var(--ink); }
+.about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+.about-list { list-style: none; padding: 0; margin: 0; }
+.about-list li { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px dashed var(--line); color: var(--ink-2); font-size: 15px; }
+.about-list li:first-child { border-top: 1px dashed var(--line); }
+.about-list li .mono { color: var(--accent); min-width: 28px; padding-top: 3px; }
+
+/* experience */
+.exp { border-top: 1px solid var(--line); }
+.job { display: grid; grid-template-columns: 220px 1fr; gap: 32px; padding: 34px 0; border-bottom: 1px solid var(--line); }
+.job-when { color: var(--muted); }
+.job-when .now { display: inline-block; margin-top: 8px; color: var(--accent); }
+.job h3 { font-size: 22px; }
+.job .org { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ink-2); }
+.job ul { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.job li { position: relative; padding-left: 22px; color: var(--ink-2); font-size: 15.5px; max-width: 78ch; }
+.job li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); font-size: 13px; top: 2px; }
+.job li b { color: var(--ink); font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.chip { font-family: var(--mono); font-size: 11.5px; padding: 4px 9px; border-radius: 6px; background: var(--bg-2); color: var(--ink-2); border: 1px solid transparent; }
+
+/* projects */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.filter {
+  font: 500 13px/1 var(--sans); padding: 9px 15px; border-radius: 99px; border: 1px solid var(--line);
+  background: var(--card); color: var(--ink-2); cursor: pointer; transition: all .2s;
+}
+.filter:hover { border-color: var(--ink); color: var(--ink); }
+.filter[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.filter .n { opacity: .55; margin-left: 4px; font-family: var(--mono); font-size: 11px; }
+.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.proj {
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px;
+  display: flex; flex-direction: column; position: relative; text-decoration: none;
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s;
+}
+.proj:hover { transform: translateY(-4px); border-color: var(--ink); box-shadow: var(--shadow); }
+.proj.feature { grid-column: span 2; }
+.proj.hide { display: none; }
+.proj-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; color: var(--muted); }
+.proj-top .arrow { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; transition: all .3s; flex-shrink: 0; }
+.proj:hover .arrow { background: var(--accent); border-color: var(--accent); color: #fff; transform: rotate(-45deg); }
+.proj h3 { font-size: 19px; margin-top: 18px; line-height: 1.25; }
+.proj .metric { font-family: var(--serif); font-size: 34px; line-height: 1; color: var(--accent); margin-top: 14px; }
+.proj .metric small { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; margin-left: 6px; }
+.proj p { color: var(--ink-2); font-size: 14.5px; margin: 12px 0 0; flex: 1; }
+.proj .chips { margin-top: 18px; }
+.proj .links { display: flex; gap: 14px; margin-top: 16px; font-size: 13px; }
+.proj .links a { text-decoration: none; border-bottom: 1px solid var(--line); position: relative; z-index: 2; }
+.proj .links a:hover { border-color: var(--accent); color: var(--accent); }
+.proj .stretch { position: absolute; inset: 0; z-index: 1; border-radius: 18px; }
+.proj-logo { width: 26px; height: 26px; border-radius: 6px; object-fit: cover; }
+.more { margin-top: 28px; display: flex; justify-content: center; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.skill { padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.skill .mono { color: var(--accent); }
+.skill h3 { font-family: var(--serif); font-weight: 400; font-size: 28px; margin: 6px 0 14px; }
+.skill .chips { margin-top: 0; }
+.skill .chip { background: transparent; border-color: var(--line); }
+
+/* research + certs */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.paper { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+.paper .venue { display: inline-flex; gap: 8px; align-items: center; color: var(--accent); }
+.paper h3 { font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.1; }
+.paper p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
+.paper .authors { color: var(--muted); font-size: 14px; }
+.paper a.read { margin-top: auto; align-self: flex-start; }
+.certs { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.cert { display: flex; gap: 14px; align-items: center; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); text-decoration: none; transition: border-color .2s; }
+a.cert:hover { border-color: var(--ink); }
+.cert .seal { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); flex-shrink: 0; font-family: var(--serif); font-size: 20px; font-style: italic; }
+.cert b { display: block; font-weight: 500; font-size: 14.5px; line-height: 1.3; }
+.cert span { font-size: 13px; color: var(--muted); }
+.edu { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+.edu > div { padding: 22px 26px; border: 1px solid var(--line); border-radius: 18px; }
+.edu h3 { font-family: var(--serif); font-weight: 400; font-size: 26px; }
+.edu p { margin: 6px 0 0; color: var(--ink-2); font-size: 14.5px; }
+
+/* contact */
+.contact { margin: 110px 0 0; background: var(--ink); color: var(--bg); border-radius: 28px; padding: 64px 56px; position: relative; overflow: hidden; }
+.contact::after { content: ""; position: absolute; width: 420px; height: 420px; right: -120px; top: -160px; border-radius: 50%; background: radial-gradient(circle, var(--accent) 0, transparent 65%); opacity: .55; filter: blur(10px); }
+.contact h2 { font-size: clamp(44px, 7vw, 96px); position: relative; z-index: 1; }
+.contact h2 i { color: var(--accent); }
+.contact p { color: color-mix(in srgb, var(--bg) 72%, transparent); max-width: 52ch; position: relative; z-index: 1; font-size: 17px; }
+.contact .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; position: relative; z-index: 1; }
+.contact .btn { border-color: color-mix(in srgb, var(--bg) 35%, transparent); color: var(--bg); }
+.contact .btn:hover { background: var(--bg); color: var(--ink); border-color: var(--bg); }
+.contact .btn.solid { background: var(--accent); border-color: var(--accent); color: #fff; }
+.contact .btn.solid:hover { background: var(--bg); color: var(--ink); border-color: var(--bg); }
+.copy-toast { font-family: var(--mono); font-size: 12px; margin-left: 4px; opacity: 0; transition: opacity .2s; align-self: center; }
+.copy-toast.show { opacity: 1; }
+footer { padding: 36px 0 48px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; }
+
+/* reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .portrait-card { max-width: 380px; }
+  .projects { grid-template-columns: repeat(2, 1fr); }
+  .skills { grid-template-columns: repeat(2, 1fr); }
+  .about-grid, .two-col { grid-template-columns: minmax(0, 1fr); }
+  .sec-head, .job { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; }
+  .nav ul { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 16px 16px; }
+  .nav ul.open { display: flex; }
+  .nav ul a { display: block; padding: 12px; font-size: 16px; }
+  .menu-btn { display: grid; }
+  .nav .btn.sm { display: none; }
+  .hero { padding-top: 44px; }
+  .pipeline { flex-direction: column; align-items: flex-start; }
+  .pipe { width: 100%; }
+  .edge { min-width: 8px; }
+  .projects, .skills, .edu { grid-template-columns: 1fr; }
+  .proj.feature { grid-column: auto; }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile.wide { grid-column: span 2; }
+  .tile { min-height: 140px; padding: 18px; }
+  .tile .big { font-size: 44px; }
+  .contact { padding: 44px 24px; border-radius: 22px; }
+  section { padding-top: 72px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">Ruturaj <i>Dixit</i></a>
+    <ul id="menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="btn solid sm" href="assets/Ruturaj_Dixit_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      <button class="icon-btn" id="theme" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="status"><span class="pulse"></span> Applied AI Engineer @ Virtual Dental Care · New York</span>
+          <h1>Ruturaj<br><span class="it">Dixit</span></h1>
+          <p class="hero-role">I build <em>agentic AI systems</em> that ship to real users, and the evals that keep them honest.</p>
+          <p class="hero-lede">4+ years taking AI from notebook to production: LangGraph multi-agent pipelines, RAG over pgvector, LoRA/QLoRA fine-tuning, LLM-as-a-judge evaluation and computer vision. That work has run in clinical research, fintech and Fortune-500 manufacturing.</p>
+          <div class="hero-cta">
+            <a class="btn solid" href="#work">See selected work
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn ghost" href="https://github.com/ruturajdixit99" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+              GitHub</a>
+            <a class="btn ghost" href="https://www.linkedin.com/in/ruturajdixit/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <aside class="portrait-card">
+          <div class="portrait">
+            <picture>
+              <source srcset="assets/headshot.webp" type="image/webp">
+              <img src="assets/headshot.jpg" alt="Portrait of Ruturaj Dixit" width="600" height="600">
+            </picture>
+          </div>
+          <div class="portrait-meta">
+            <div><span class="mono">Based</span><b>New York, NY</b></div>
+            <div><span class="mono">Degree</span><b>M.S. Data Science</b></div>
+            <div><span class="mono">Published</span><b>BICA 2026</b></div>
+            <div><span class="mono">Open source</span><b>Opinfer · PyPI</b></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="pipeline reveal" aria-label="How I build: a typical agentic pipeline">
+        <span class="mono label">How I ship ↘</span>
+        <div class="pipe" id="pipe">
+          <span class="node">ingest</span><span class="edge"></span>
+          <span class="node">embed · pgvector</span><span class="edge"></span>
+          <span class="node">retrieve + rerank</span><span class="edge"></span>
+          <span class="node">LangGraph agents</span><span class="edge"></span>
+          <span class="node">structured output</span><span class="edge"></span>
+          <span class="node">LLM-as-judge</span><span class="edge"></span>
+          <span class="node">human review</span><span class="edge"></span>
+          <span class="node last">ship</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT / METRICS -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mono"><b>01</b> / About</span>
+        <h2>Engineer first,<br><i>researcher</i> by habit.</h2>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="about-text">I care about the unglamorous half of AI: <em>evaluation sets, review gates and the lifecycle after launch</em>. That is the work that turns a demo into a system people trust.</p>
+          <ul class="about-list">
+            <li><span class="mono">now</span>Applied AI Engineer at Virtual Dental Care, building clinical research intelligence with multi-agent orchestration, RAG and human-in-the-loop review.</li>
+            <li><span class="mono">'24</span>Data Scientist at PrimeMarket AI. Built and ran an AI financial intelligence platform in production for more than a year.</li>
+            <li><span class="mono">'25</span>Graduate TA &amp; AI Researcher at Pace University. Published an active-perception pipeline for robot cognition at BICA 2026.</li>
+            <li><span class="mono">'22</span>Software Engineer at TCS. Shipped CV and ML systems for Stellantis, Tokyo Electron, RBC and Lamb Weston.</li>
+          </ul>
+        </div>
+        <div class="bento reveal">
+          <div class="tile dark wide">
+            <span class="mono">Years in production AI</span>
+            <div><div class="big">4+</div><p>Agentic pipelines, RAG, fine-tuning, CV and forecasting, in production.</p></div>
+          </div>
+          <div class="tile accent">
+            <span class="mono">Fraud AUC</span>
+            <div><div class="big">.996</div><p>Risk analyzer</p></div>
+          </div>
+          <div class="tile">
+            <span class="mono">ROUGE-2</span>
+            <div><div class="big">+68<small>%</small></div><p>QLoRA on one 8GB GPU</p></div>
+          </div>
+          <div class="tile">
+            <span class="mono">CV accuracy</span>
+            <div><div class="big">90<small>%+</small></div><p>Stellantis defect detection</p></div>
+          </div>
+          <div class="tile">
+            <span class="mono">Enterprise clients</span>
+            <div><div class="big">4</div><p>Shipped at TCS</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mono"><b>02</b> / Experience</span>
+        <h2>Where I've <i>shipped</i>.</h2>
+      </div>
+      <div class="exp">
+        <article class="job reveal">
+          <div class="job-when mono">Jul 2026 — Present<br><span class="now">● Current</span></div>
+          <div>
+            <h3>Applied AI Engineer</h3>
+            <div class="org">Virtual Dental Care, Inc. · New York</div>
+            <ul>
+              <li>Designed and deployed an <b>agentic pipeline for clinical research intelligence</b>: LangGraph multi-agent orchestration, RAG over PostgreSQL/pgvector, structured output schemas and human-in-the-loop review gates. Own the full lifecycle after launch, with real users.</li>
+              <li>Built microservices and REST APIs on AWS (Lambda, S3, EC2) that feed LLM outputs into clinical workflows. Added an <b>LLM-as-a-judge evaluation framework</b> that gates every prompt and model change before it ships.</li>
+              <li>Built signal classifiers and entity extraction/linking systems with prompting and LoRA fine-tuned open-weight models. Curated training data from analyst-approved outputs and review junior engineers' code.</li>
+            </ul>
+            <div class="chips"><span class="chip">LangGraph</span><span class="chip">pgvector</span><span class="chip">AWS Lambda</span><span class="chip">LoRA</span><span class="chip">LLM-as-judge</span><span class="chip">FastAPI</span></div>
+          </div>
+        </article>
+        <article class="job reveal">
+          <div class="job-when mono">Jul 2024 — Jun 2026</div>
+          <div>
+            <h3>Data Scientist</h3>
+            <div class="org">PrimeMarket AI · New York</div>
+            <ul>
+              <li>Built an <b>AI financial intelligence platform</b>: LangGraph agentic orchestration, pgvector RAG, signal classifiers, entity extraction and chart pattern recognition with OpenCV image segmentation. Ran it in production for more than a year.</li>
+              <li>Designed FastAPI backend services and cloud-native architecture on AWS. Automated analyst workflows with human review of model outputs, and maintained eval sets that score every model and prompt change.</li>
+            </ul>
+            <div class="chips"><span class="chip">FastAPI</span><span class="chip">AWS</span><span class="chip">OpenCV</span><span class="chip">RAG</span><span class="chip">Time-series</span></div>
+          </div>
+        </article>
+        <article class="job reveal">
+          <div class="job-when mono">Feb 2025 — May 2026</div>
+          <div>
+            <h3>Graduate Teaching Assistant &amp; AI Researcher</h3>
+            <div class="org">Pace University · Seidenberg School of CSIS</div>
+            <ul>
+              <li>Built and maintained AI research applications (RAG pipelines, signal classifiers, entity extraction/linking) from design through deployment. Ran LoRA fine-tuning on open-weight models.</li>
+              <li>Research on the <b>ADAPT</b> robot cognitive architecture, working with vision-language and depth foundation models. Published at <b>BICA 2026</b>.</li>
+              <li>Mentored graduate students on AI engineering, Python and ML evaluation. Documented prompts, schemas, evaluation results and operating procedures.</li>
+            </ul>
+            <div class="chips"><span class="chip">VLMs</span><span class="chip">Depth Anything</span><span class="chip">ROS 2</span><span class="chip">PyTorch</span><span class="chip">Teaching</span></div>
+          </div>
+        </article>
+        <article class="job reveal">
+          <div class="job-when mono">Oct 2022 — Aug 2024</div>
+          <div>
+            <h3>Software Engineer · AI &amp; Computer Vision</h3>
+            <div class="org">Tata Consultancy Services · Pune, India</div>
+            <ul>
+              <li><b>Stellantis:</b> deployed a computer vision defect detection pipeline (YOLO, Detectron2, OpenCV) at 90%+ accuracy, wired into manufacturing quality workflows through Python REST APIs.</li>
+              <li><b>Tokyo Electron:</b> built an ML model for semiconductor process optimization with 89% prediction accuracy.</li>
+              <li><b>RBC:</b> built real-time financial analytics dashboards, portfolio risk models and SQL/Python data pipelines.</li>
+              <li><b>Lamb Weston:</b> built demand forecasting and supply chain optimization models and owned them in production end to end.</li>
+            </ul>
+            <div class="chips"><span class="chip">YOLO</span><span class="chip">Detectron2</span><span class="chip">scikit-learn</span><span class="chip">SQL</span><span class="chip">Forecasting</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mono"><b>03</b> / Selected work</span>
+        <h2>Things I've <i>built</i>.</h2>
+      </div>
+      <div class="filters reveal" role="group" aria-label="Filter projects" id="filters"></div>
+      <div class="projects" id="projects"></div>
+      <div class="more"><a class="btn ghost" href="https://github.com/ruturajdixit99?tab=repositories" target="_blank" rel="noopener">All repositories on GitHub ↗</a></div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mono"><b>04</b> / Stack</span>
+        <h2>Tools of the <i>trade</i>.</h2>
+      </div>
+      <div class="skills reveal">
+        <div class="skill"><span class="mono">01</span><h3>LLMs &amp; GenAI</h3><div class="chips"><span class="chip">GPT-4o</span><span class="chip">Claude</span><span class="chip">Gemini</span><span class="chip">AWS Bedrock</span><span class="chip">QLoRA / LoRA</span><span class="chip">vLLM</span><span class="chip">RAG</span><span class="chip">LLM-as-a-judge</span><span class="chip">Structured outputs</span><span class="chip">Prompt engineering</span></div></div>
+        <div class="skill"><span class="mono">02</span><h3>Agents &amp; ML</h3><div class="chips"><span class="chip">LangGraph</span><span class="chip">LangChain</span><span class="chip">ReAct</span><span class="chip">PyTorch</span><span class="chip">Hugging Face</span><span class="chip">PEFT</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">SHAP</span></div></div>
+        <div class="skill"><span class="mono">03</span><h3>Vision &amp; Robotics</h3><div class="chips"><span class="chip">YOLO</span><span class="chip">Detectron2</span><span class="chip">OpenCV</span><span class="chip">ViT / OWL-ViT</span><span class="chip">Depth Anything</span><span class="chip">ROS 2</span><span class="chip">ZED stereo</span></div></div>
+        <div class="skill"><span class="mono">04</span><h3>Backend &amp; Data</h3><div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">pgvector</span><span class="chip">Snowflake</span><span class="chip">dbt</span><span class="chip">PySpark</span><span class="chip">SQL</span></div></div>
+        <div class="skill"><span class="mono">05</span><h3>Cloud &amp; MLOps</h3><div class="chips"><span class="chip">AWS SageMaker</span><span class="chip">Lambda</span><span class="chip">S3 / EC2</span><span class="chip">Azure AI Foundry</span><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">Databricks</span></div></div>
+        <div class="skill"><span class="mono">06</span><h3>Frontend &amp; Viz</h3><div class="chips"><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Tailwind</span><span class="chip">Recharts</span><span class="chip">Streamlit</span><span class="chip">Tableau</span><span class="chip">Power BI</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mono"><b>05</b> / Research &amp; credentials</span>
+        <h2>Papers, degrees, <i>certs</i>.</h2>
+      </div>
+      <div class="two-col reveal">
+        <article class="paper">
+          <span class="venue mono">● BICA 2026 · Conference paper</span>
+          <h3>An Active Perception Pipeline for a Robot Cognitive Architecture</h3>
+          <p class="authors">R. Dixit, N. Verma, P. Benjamin</p>
+          <p>17th Annual International Conference on Biologically Inspired Cognitive Architectures. Gives the ADAPT robot cognitive architecture an active-perception loop on a Clearpath Jackal UGV with ZED stereo depth.</p>
+          <a class="btn ghost sm read" href="https://github.com/ruturajdixit99/ADAPT-activeperception" target="_blank" rel="noopener">Code ↗</a>
+        </article>
+        <article class="paper">
+          <span class="venue mono">● Preprint · ResearchGate · 2025</span>
+          <h3>Pattern Recognition in Financial Charts Using Image Segmentation</h3>
+          <p class="authors">R. Dixit</p>
+          <p>Uses image segmentation to detect Fair Value Gaps, trendlines and harmonic patterns in financial chart images. Single-author, with its own evaluation methodology.</p>
+          <a class="btn ghost sm read" href="https://www.researchgate.net/publication/389497552" target="_blank" rel="noopener">Read paper ↗</a>
+        </article>
+      </div>
+      <div class="edu reveal">
+        <div><span class="mono" style="color:var(--accent)">May 2026 · GPA 3.6</span><h3>M.S. Data Science</h3><p>Pace University, New York. Machine Learning, Deep Learning, NLP, Cloud Computing, Data Engineering.</p></div>
+        <div><span class="mono" style="color:var(--accent)">Undergraduate</span><h3>B.Tech Electronics Engineering</h3><p>Shivaji University, India.</p></div>
+      </div>
+      <ul class="certs reveal">
+        <li><a class="cert" href="https://www.credly.com/badges/af759325-fad5-4fef-8abb-8820301bc2e3/linked_in_profile" target="_blank" rel="noopener"><span class="seal">A</span><div><b>AWS Certified Machine Learning Engineer, Associate</b><span>Amazon Web Services ↗</span></div></a></li>
+        <li><div class="cert"><span class="seal">D</span><div><b>Databricks Fundamentals</b><span>Databricks</span></div></div></li>
+        <li><div class="cert"><span class="seal">N</span><div><b>Neo4j Fundamentals</b><span>Neo4j · Aug 2026</span></div></div></li>
+        <li><a class="cert" href="https://www.linkedin.com/learning/certificates/4a909a76714dd9fd054bb0a2f3f24a8ea014055054c73a74eb0d78d6e24f603c" target="_blank" rel="noopener"><span class="seal">S</span><div><b>PySpark Essential Training</b><span>LinkedIn Learning · Jan 2026 ↗</span></div></a></li>
+        <li><div class="cert"><span class="seal">P</span><div><b>PCAP: Python Programming Essentials</b><span>Python Institute / Cisco</span></div></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="wrap">
+    <section id="contact" class="contact reveal">
+      <span class="mono" style="position:relative;z-index:1;opacity:.7">06 / Contact</span>
+      <h2>Let's build<br>something <i>useful</i>.</h2>
+      <p>I'm interested in applied AI, ML engineering and data science roles, especially teams putting agentic systems and LLMs into production. The fastest way to reach me is email.</p>
+      <div class="row">
+        <a class="btn solid" href="mailto:ruturajdixit54@gmail.com">ruturajdixit54@gmail.com</a>
+        <button class="btn" id="copyEmail" type="button">Copy email</button>
+        <a class="btn" href="https://www.linkedin.com/in/ruturajdixit/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://github.com/ruturajdixit99" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn" href="assets/Ruturaj_Dixit_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF) ↗</a>
+        <span class="copy-toast" id="toast">Copied ✓</span>
+      </div>
+    </section>
+    <footer>
+      <span>© <span id="yr">2026</span> Ruturaj Dixit · New York</span>
+      <span class="mono">Hand-built · Hosted on GitHub Pages</span>
+    </footer>
+  </div>
+</main>
+
+<script>
+const GH = "https://github.com/ruturajdixit99/";
+const PROJECTS = [
+  { t: "Multi-Agent Customer Support RAG", cat: "genai", feature: true, metric: "Agentic", unit: "LangGraph · pgvector",
+    d: "Cloud-native agent app: LangGraph orchestration, pgvector RAG with cross-encoder reranking, structured outputs, LLM-as-a-judge evaluation and human-in-the-loop review gates. Includes LoRA fine-tuned classifiers for signal type and stance.",
+    tags: ["LangGraph", "pgvector", "Reranking", "LoRA", "Evals"], repo: "multi-agent-customer-support-rag" },
+  { t: "LLM QLoRA Fine-Tuning", cat: "genai", metric: "+67.7%", unit: "ROUGE-2",
+    d: "Qwen2.5-3B-Instruct fine-tuned on SAMSum with 4-bit QLoRA (rank-16, ~30M trainable params) on a single 8GB GPU. Before/after evaluation on held-out dialogues.",
+    tags: ["QLoRA", "PEFT", "Qwen2.5", "ROUGE"], repo: "llm-qlora-finetune" },
+  { t: "Opinfer", cat: "cv", logo: "assets/opinfer.webp", metric: "50%+", unit: "faster video inference",
+    d: "Open-source Python package (PyPI v1.0.0) for adaptive motion gating and frame queuing. It speeds up ViT, DeiT and OWL-ViT video inference by skipping redundant frames.",
+    tags: ["PyTorch", "ViT", "VLM", "Open source"], repo: "Opinfer" },
+  { t: "Financial Transaction Risk Analyzer", cat: "ml", metric: "0.9957", unit: "AUC",
+    d: "Two models for customer-level fraud and risk scoring: a Random Forest classifier and an Isolation Forest anomaly detector. Features are built from chargeback rates, high-risk merchant ratios and night-time transaction patterns.",
+    tags: ["scikit-learn", "Anomaly detection", "Feature eng."], repo: "Financial-Transaction-Risk-Analyzer" },
+  { t: "Subscription Churn Prediction", cat: "ml", feature: true, metric: "Live", unit: "Next.js scoring API",
+    d: "Telco churn study comparing LogReg, Random Forest and XGBoost, with SHAP explanations. The trained model is ported to TypeScript and scores customers live from a Next.js API on Vercel, with no Python runtime.",
+    tags: ["XGBoost", "SHAP", "Next.js", "Vercel"], repo: "subscription-churn-prediction",
+    demo: "https://subscription-churn-prediction-ruturajdixit99s-projects.vercel.app" },
+  { t: "E-commerce Churn & CLV", cat: "ml", metric: "5,852", unit: "real customers scored",
+    d: "Uses UCI Online Retail II data: RFM features, churn labels from real purchase gaps, and BG/NBD + Gamma-Gamma CLV. Customers fall into 4 churn-risk tiers, each with a retention action.",
+    tags: ["lifetimes", "RFM", "CLV", "Segmentation"], repo: "ecommerce-churn-clv-prediction",
+    demo: "https://ecommerce-churn-clv-prediction-ruturajdixit99s-projects.vercel.app" },
+  { t: "Real-time Engagement Pipeline", cat: "ml", metric: "2.8M", unit: "events replayed",
+    d: "Replays Last.fm-1K listening history in streaming order, computes rolling engagement features per user and scores disengagement risk live. Includes a Streamlit replay dashboard.",
+    tags: ["Streaming", "Feature store", "Streamlit"], repo: "realtime-engagement-churn-pipeline",
+    demo: "https://realtime-engagement-churn-pipeline-ruturajdixit99s-projects.vercel.app" },
+  { t: "Trading Signals Dashboard", cat: "full", metric: "15s", unit: "live quote polling",
+    d: "FastAPI backend computing SMA golden/death crosses and RSI signals, each with a plain-language explanation. React/TypeScript + Recharts frontend with per-ticker caching and graceful partial failures.",
+    tags: ["FastAPI", "React", "TypeScript", "Recharts"], repo: "trading-signals-dashboard" },
+  { t: "Hybrid Movie Recommender", cat: "ml", metric: "0.63", unit: "Precision@10",
+    d: "SVD collaborative filtering blended with TF-IDF content-based filtering, plus a cold-start fallback. Explains each recommendation and ships with a Streamlit dashboard and CLI.",
+    tags: ["SVD", "TF-IDF", "RecSys", "Streamlit"], repo: "movielens-hybrid-recommender" },
+  { t: "Healthcare Agentic Scheduling Agent", cat: "genai", metric: "ReAct", unit: "tool-using agent",
+    d: "Scheduling agent using ReAct reasoning, LangChain tool use, AWS Lambda and Azure AI Foundry. Has human review gates, a HIPAA-conscious audit trail and evals for hallucination rate.",
+    tags: ["ReAct", "LangChain", "Azure AI", "Lambda"], repo: "Healthcare-AgenticAI-sched_agent" },
+  { t: "MOSAIC Cog3D", cat: "cv", metric: "3D", unit: "instance reconstruction",
+    d: "Compute-conscious training scaffold for multi-view 3D instance reconstruction. Caches frozen Depth Anything 3 features, trains a DPT-lite decoder and matches objects with Hungarian matching on 8GB VRAM.",
+    tags: ["Depth Anything 3", "PyTorch", "3D vision"], repo: "MOSAIC-Cog3D" },
+  { t: "Jackal ZED Live Feed & Navigation", cat: "cv", metric: "ROS 2", unit: "robot streaming",
+    d: "Low-latency stereo streaming from a Clearpath Jackal over FastAPI WebSockets. Adds a ROS 2 mode that fuses ZED depth with Velodyne LiDAR for obstacle avoidance.",
+    tags: ["ROS 2", "WebSockets", "LiDAR", "Robotics"], repo: "JackalsZedCamera-LiveFeed2LocalServer" },
+  { t: "PubMed RAG QA Bot", cat: "genai", metric: "RAG", unit: "medical literature",
+    d: "Streamlit app that answers natural-language healthcare research questions with retrieval-augmented generation over real PubMed articles.",
+    tags: ["RAG", "Embeddings", "Streamlit"], repo: "Healthcare-PuBMeD-QA-BOT-RAG-APP" },
+  { t: "Banking Support NLP", cat: "genai", metric: "NLP", unit: "intent routing",
+    d: "Sorts banking support tickets (lost card, disputes, account access, loans) into categories with transformer embeddings from Hugging Face.",
+    tags: ["Transformers", "Hugging Face", "Classification"], repo: "NLP-for-Banking-Support-Automation-Python-Hugging-Face" },
+  { t: "Pricing Optimization Experiment", cat: "ml", metric: "A/B", unit: "causal inference",
+    d: "A/B testing and causal inference framework for optimizing pricing for revenue.",
+    tags: ["Experimentation", "Causal", "Statistics"], repo: "Pricing-Optimization-Experiment" },
+  { t: "PrimeMarket AI", cat: "full", logo: "assets/primemarket.webp", metric: "1yr+", unit: "in production",
+    d: "AI financial intelligence platform: agentic orchestration, RAG, signal classifiers and chart pattern recognition. Built and run end to end.",
+    tags: ["LangGraph", "FastAPI", "AWS", "OpenCV"], demo: "https://www.primemarketai.com" },
+];
+const CATS = [["all", "All"], ["genai", "GenAI & Agents"], ["ml", "ML & Data Science"], ["cv", "Vision & Robotics"], ["full", "Full-stack"]];
+const LABEL = Object.fromEntries(CATS);
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const grid = document.getElementById("projects");
+grid.innerHTML = PROJECTS.map(p => {
+  const main = p.demo || (GH + p.repo);
+  const links = [p.repo && `<a href="${GH + p.repo}" target="_blank" rel="noopener">Code ↗</a>`, p.demo && `<a href="${p.demo}" target="_blank" rel="noopener">Live demo ↗</a>`].filter(Boolean).join("");
+  return `<article class="proj reveal${p.feature ? " feature" : ""}" data-cat="${p.cat}">
+    <a class="stretch" href="${main}" target="_blank" rel="noopener" aria-label="${esc(p.t)}"></a>
+    <div class="proj-top"><span class="mono" style="display:flex;gap:8px;align-items:center">${p.logo ? `<img class="proj-logo" src="${p.logo}" alt="" width="26" height="26">` : ""}${LABEL[p.cat]}</span>
+      <span class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    <h3>${esc(p.t)}</h3>
+    <div class="metric">${p.metric}<small>${esc(p.unit)}</small></div>
+    <p>${esc(p.d)}</p>
+    <div class="chips">${p.tags.map(t => `<span class="chip">${esc(t)}</span>`).join("")}</div>
+    <div class="links">${links}</div>
+  </article>`;
+}).join("");
+
+const filters = document.getElementById("filters");
+filters.innerHTML = CATS.map(([k, v]) => {
+  const n = k === "all" ? PROJECTS.length : PROJECTS.filter(p => p.cat === k).length;
+  return `<button class="filter" data-k="${k}" aria-pressed="${k === "all"}">${v}<span class="n">${n}</span></button>`;
+}).join("");
+filters.addEventListener("click", e => {
+  const b = e.target.closest(".filter"); if (!b) return;
+  filters.querySelectorAll(".filter").forEach(x => x.setAttribute("aria-pressed", x === b));
+  const k = b.dataset.k;
+  grid.querySelectorAll(".proj").forEach(el => {
+    const show = k === "all" || el.dataset.cat === k;
+    el.classList.toggle("hide", !show);
+    el.classList.toggle("feature", show && k === "all" && PROJECTS.find(p => p.t === el.querySelector("h3").textContent)?.feature);
+    if (show) el.classList.add("in");
+  });
+});
+
+// reveal on scroll
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+}), { threshold: .08, rootMargin: "0px 0px -40px 0px" }) : null;
+document.querySelectorAll(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("in"));
+
+// pipeline animation
+const nodes = [...document.querySelectorAll("#pipe .node")];
+let step = 0;
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  setInterval(() => {
+    step = (step + 1) % (nodes.length + 3);
+    nodes.forEach((n, i) => n.classList.toggle("lit", i < step));
+  }, 520);
+} else nodes.forEach(n => n.classList.add("lit"));
+
+// nav: scrolled state + active link
+const nav = document.getElementById("nav");
+const links = [...document.querySelectorAll("#menu a")];
+const secs = links.map(a => document.querySelector(a.getAttribute("href")));
+addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", scrollY > 10);
+  let cur = -1;
+  secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top < 140) cur = i; });
+  links.forEach((a, i) => a.classList.toggle("active", i === cur));
+}, { passive: true });
+
+// mobile menu
+const menu = document.getElementById("menu"), menuBtn = document.getElementById("menuBtn");
+menuBtn.addEventListener("click", () => { const o = menu.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", o); });
+links.forEach(a => a.addEventListener("click", () => { menu.classList.remove("open"); menuBtn.setAttribute("aria-expanded", false); }));
+
+// theme toggle
+document.getElementById("theme").addEventListener("click", () => {
+  const root = document.documentElement;
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+});
+
+// copy email
+document.getElementById("copyEmail").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText("ruturajdixit54@gmail.com"); } catch (e) {}
+  const t = document.getElementById("toast"); t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1600);
+});
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
