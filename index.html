@@ -215,7 +215,7 @@ h3 { margin: 0; font-weight: 600; letter-spacing: -.01em; }
 .filter:hover { border-color: var(--ink); color: var(--ink); }
 .filter[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .filter .n { opacity: .55; margin-left: 4px; font-family: var(--mono); font-size: 11px; }
-.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-flow: row dense; gap: 14px; }
 .proj {
   background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 22px;
   display: flex; flex-direction: column; position: relative; text-decoration: none;
@@ -281,6 +281,22 @@ a.cert:hover { border-color: var(--ink); }
 .copy-toast.show { opacity: 1; }
 footer { padding: 36px 0 48px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; }
 
+/* featured video */
+.feature-demo { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--card); margin-bottom: 40px; }
+.video { position: relative; aspect-ratio: 16 / 9; background: #151b24; align-self: center; width: 100%; }
+.video button { all: unset; cursor: pointer; position: absolute; inset: 0; display: block; overflow: hidden; }
+.video button img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.video button:hover img { transform: scale(1.02); }
+.video button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #fff; }
+.video .tag { position: absolute; left: 14px; top: 14px; background: var(--accent); color: #fff; padding: 5px 10px; border-radius: 99px; z-index: 2; pointer-events: none; }
+.demo-body { padding: 28px; display: flex; flex-direction: column; gap: 12px; border-left: 1px solid var(--line); }
+.demo-body h3 { font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.08; }
+.demo-steps { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; counter-reset: s; }
+.demo-steps li { counter-increment: s; display: flex; gap: 10px; font-size: 14px; color: var(--ink-2); }
+.demo-steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--mono); font-size: 11px; color: var(--accent); padding-top: 3px; }
+.demo-body .links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+
 /* reveal */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
 .reveal.in { opacity: 1; transform: none; }
@@ -291,7 +307,8 @@ footer { padding: 36px 0 48px; color: var(--muted); display: flex; justify-conte
   .portrait-card { max-width: 380px; }
   .projects { grid-template-columns: repeat(2, 1fr); }
   .skills { grid-template-columns: repeat(2, 1fr); }
-  .about-grid, .two-col { grid-template-columns: minmax(0, 1fr); }
+  .about-grid, .two-col, .feature-demo { grid-template-columns: minmax(0, 1fr); }
+  .demo-body { border-left: 0; border-top: 1px solid var(--line); }
   .sec-head, .job { grid-template-columns: minmax(0, 1fr); gap: 10px; }
 }
 @media (max-width: 760px) {
@@ -511,6 +528,28 @@ footer { padding: 36px 0 48px; color: var(--muted); display: flex; justify-conte
         <span class="mono"><b>03</b> / Selected work</span>
         <h2>Things I've <i>built</i>.</h2>
       </div>
+      <article class="feature-demo reveal" aria-label="Featured demo video">
+        <div class="video" id="video">
+          <span class="tag mono">Demo · Robotics</span>
+          <button type="button" id="playDemo" aria-label="Play the object-goal navigation demo video">
+            <img src="assets/jackal-demo.webp" alt="APPRCA + Jackal object-goal navigation demo video" width="1280" height="720" loading="lazy">
+          </button>
+        </div>
+        <div class="demo-body">
+          <span class="mono" style="color:var(--accent)">Pace AI &amp; Robotics Lab · ADAPT</span>
+          <h3>"Go to the chair." Object-goal navigation on a Clearpath Jackal</h3>
+          <ol class="demo-steps">
+            <li>Type an object name. Detection locks onto that single target, and the operator can click to choose between several.</li>
+            <li>ZED stereo depth measures the distance, and the robot drives up and stops 0.75 m away.</li>
+            <li>VGGT rebuilds the scene in 3D from 4 views, rendered live in Open3D.</li>
+            <li>LiDAR and ZED run independent safety checks. If data goes stale or the target is lost, the robot holds instead of guessing.</li>
+          </ol>
+          <div class="links">
+            <a class="btn solid sm" href="https://www.linkedin.com/posts/ruturajdixit_robotics-computervision-ros2-activity-7513984225902170112-tKsP" target="_blank" rel="noopener">Watch on LinkedIn ↗</a>
+            <a class="btn ghost sm" href="https://github.com/ruturajdixit99/JackalsZedCamera-LiveFeed2LocalServer" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+      </article>
       <div class="filters reveal" role="group" aria-label="Filter projects" id="filters"></div>
       <div class="projects" id="projects"></div>
       <div class="more"><a class="btn ghost" href="https://github.com/ruturajdixit99?tab=repositories" target="_blank" rel="noopener">All repositories on GitHub ↗</a></div>
@@ -730,6 +769,14 @@ document.getElementById("theme").addEventListener("click", () => {
 document.getElementById("copyEmail").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText("ruturajdixit54@gmail.com"); } catch (e) {}
   const t = document.getElementById("toast"); t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1600);
+});
+// featured video: swap poster for the LinkedIn player on click
+document.getElementById("playDemo").addEventListener("click", () => {
+  const f = document.createElement("iframe");
+  f.src = "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7513777269123940352";
+  f.title = "Object-goal navigation demo (LinkedIn)";
+  f.allow = "autoplay; fullscreen; picture-in-picture"; f.allowFullscreen = true;
+  const v = document.getElementById("video"); v.replaceChildren(f);
 });
 document.getElementById("yr").textContent = new Date().getFullYear();
 </script>
